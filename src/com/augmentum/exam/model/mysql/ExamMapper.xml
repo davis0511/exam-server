@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.augmentum.exam.model.Exam">
+
+    <resultMap type="Exam" id="ExamMap">
+        <id column="id" property="id"/>
+        <result column="exam_name" property="examName"/>
+        <result column="description" property="description"/>
+        <result column="total_score" property="totalScore"/>
+        <result column="quantity" property="quanlity"/>
+        <result column="exam_time" property="examTime"/>
+        <result column="single_score" property="singleScore"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <select id="getExamCount" resultType="int" parameterType="map">
+        <![CDATA[
+            SELECT COUNT(*) AS examCount FROM exam 
+               WHERE (#{examName} is null or (#{examName} is NOT NULL AND exam_name  LIKE #{examName}))
+        ]]>
+    </select>
+
+    <select id="findQuery" resultMap="ExamMap" parameterType="map">
+        <![CDATA[
+            SELECT * FROM exam 
+               WHERE (#{examName} is NULL or (#{examName} is NOT NULL AND exam_name  LIKE #{examName}))
+                ORDER BY updated_time DESC LIMIT #{offset}, #{pageSize}
+        ]]>
+    </select>
+    
+     <insert id="create" parameterType="Exam" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+        INSERT INTO exam(exam_name, description, total_score, quantity, exam_time, single_score, created_time, updated_time)
+                VALUES(#{examName}, #{description}, #{totalScore}, #{quanlity}, #{examTime}, #{singleScore}, NOW(), NOW())
+        ]]>
+    </insert>
+</mapper>
+

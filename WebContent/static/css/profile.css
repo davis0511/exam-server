@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.my_profile {
+    height: 381px;
+    width: 600px;
+    margin-left: 300px;
+    margin-top: 80px;
+}
+
+.user_password {
+    margin-left: 55px;
+}
+
+.profile_input {
+    border-radius: 2px;
+    width: 200px;
+    height: 20px;
+}
+.sub_can {
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    background-color: #00C5CD;
+    color: #FFFFFF;
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+.exam_description, .exam_name {
+    color: #000000; font-size: 14px;
+    text-align: center;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    height: 30px;
+    line-height: 22px;
+    float: left;
+    
+}
+.exam_description {
+    width: 335px;
+}
+
+.exam_name {
+    width: 110px;
+}
+
+.save_name {
+    margin-left: 140px;
+}
+
+.save_description, .save_score {
+    margin-left: 80px;
+}
+
+.save_quality {
+    margin-left: 40px;
+}
+
+.save_duration , .save_sub{
+    margin-left: 100px;
+}
+.save_sub, .save_can {
+    background-color: #00C5CD;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+.exam_area {
+    width: 350px;
+    height: 90px;
+    margin-left: 110px;
+    resize:none;
+    border-radius: 3px;
+}
+.exam_other {
+    width: 80px;
+    height: 25px;
+    border-radius: 2px;
+}
+.exam_text_name {
+    width: 150px;
+    height: 25px;
+    border-radius: 2px;
+}

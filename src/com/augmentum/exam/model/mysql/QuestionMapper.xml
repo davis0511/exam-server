@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.augmentum.exam.model.Question">
+
+    <resultMap type="Question" id="questionMap">
+        <id column="id" property="id"/>
+        <result column="question_title" property="questionTitle"/>
+        <result column="select_a" property="selectA"/>
+        <result column="select_b" property="selectB"/>
+        <result column="select_c" property="selectC"/>
+        <result column="select_d" property="selectD"/>
+        <result column="standard_answer" property="standardAnswer"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <insert id="create" parameterType="Question" useGeneratedKeys="true" keyProperty="id">
+        <![CDATA[
+        INSERT INTO question(question_title, select_a, select_b, select_c, select_d, standard_answer, created_time, updated_time)
+                VALUES(#{questionTitle}, #{selectA}, #{selectB}, #{selectC}, #{selectD}, #{standardAnswer}, NOW(), NOW())
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="Question">
+       <![CDATA[
+            UPDATE question 
+            SET 
+                question_title = #{questionTitle},
+                select_a = #{selectA},
+                select_b = #{selectB},
+                select_c = #{selectC},
+                select_d = #{selectD},
+                standard_answer = #{standardAnswer},
+                updated_time = NOW()
+            WHERE 
+                id = #{id}
+        ]]>
+    </update>
+
+    <select id="getQuestionCount" resultType="int" parameterType="map">
+        <![CDATA[
+            SELECT COUNT(*) AS questionCount FROM question WHERE is_delete = 0 
+               AND (#{questionTitle} is NULL or (#{questionTitle} is NOT NULL AND question_title  LIKE #{questionTitle}))
+        ]]>
+    </select>
+
+    <select id="getById" parameterType="int" resultMap="questionMap">
+        <![CDATA[
+            SELECT * FROM question WHERE id = #{id}
+        ]]>
+    </select>
+
+     <update id="deleteById" parameterType="int" >
+        <![CDATA[
+            UPDATE question SET is_delete = 1 WHERE id = #{id}
+        ]]>
+    </update>
+
+    <select id="findQuery" resultMap="questionMap" parameterType="map">
+        <![CDATA[
+            SELECT * FROM question WHERE is_delete = 0 
+                AND (#{questionTitle} is NULL or (#{questionTitle} is NOT NULL AND  question_title  LIKE #{questionTitle}))
+                ORDER BY updated_time DESC LIMIT #{offset}, #{pageSize}
+        ]]>
+    </select>
+</mapper>
+

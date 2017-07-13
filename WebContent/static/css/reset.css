@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+body, div, d1, dt, dd, u1, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textrea, p, blockquote, th, td, hr, button,
+figcaption, figure, footer, header, hgroup, menu, nav, section {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 12px/1.55em arial, helvetica, sans-serif;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
+ol, ul {
+    list-style: none;
+}
